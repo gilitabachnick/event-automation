@@ -20,10 +20,12 @@ START_DATE = datetime.datetime.now(datetime.timezone.utc)
 
 
 BASE_EVENT = {
-    "templateId": "tm3000",   # hard coded - depending on the event Type, each one creating a different event type 
-    "description": "Automation via API",
-    "timezone": "America/New_York"
+    "templateId": os.getenv("TEMPLATE_ID","tm3000"),   # hard coded - depending on the event Type, each one creating a different event type: 000 blank, 1000 interactive, 2000 live webcast, 3000 Pre-recorded live, 4000 DIY live broadcast
+    "description": os.getenv("DESCRIPTION"),
+    "timezone": os.getenv("TIMEZONE", "America/New_York")
 }
+
+NAME_OF_EVENT = os.getenv("NAME_OF_EVENT", "AutoTest_")
 
 # ===titles==
 headers = {
@@ -40,7 +42,7 @@ for i in range(1, NUMBER_OF_EVENTS + 1):
 
     event_data = BASE_EVENT.copy()
     event_data.update({
-        "name": f"AutoTest_{i}",
+        "name": f"{NAME_OF_EVENT}{i}",
         "startDate": start_date.isoformat().replace("+00:00", "Z"),
         "endDate": end_date.isoformat().replace("+00:00", "Z")
     })
@@ -49,7 +51,7 @@ for i in range(1, NUMBER_OF_EVENTS + 1):
     response = requests.post(API_URL, headers=headers, json=event_data)
 
     if response.status_code in [200, 201]:
-        print(f"✅ created successfullyה: {event_data['name']}")
+        print(f"✅ created successfully: {event_data['name']}")
         created_events.append({
             "name": event_data['name'],
             "startDate": event_data['startDate'],
