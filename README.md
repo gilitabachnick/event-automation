@@ -14,9 +14,14 @@ This Python script automates the creation of events using the Kaltura Events API
 
 ### Setup
 1. Ensure you have a `.env` file with your Kaltura token and settings, e.g.:
-KALTURA_TOKEN=your_token_here
-NUMBER_OF_EVENTS=x
-DURATION_HOURS=y
+KALTURA_TOKEN=""
+NUMBER_OF_EVENTS=2  
+DURATION_HOURS=4
+TEMPLATE_ID=tm3000
+DESCRIPTION=Automation via API
+TIMEZONE=America/New_York
+NAME_OF_EVENT=""
+
 
 ### 2. Install dependencies
 Install the required Python packages using:
