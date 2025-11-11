@@ -1,19 +1,23 @@
-
+import os
 import requests
 import datetime
 import json
+from dotenv import load_dotenv
 
 # URL:
 API_URL = "https://events-api.nvp1.ovp.kaltura.com/api/v1/event/create"
 
 # Token:
-TOKEN = ""
+load_dotenv()
 
-NUMBER_OF_EVENTS = 10  # How many events to create
-DURATION_HOURS = 4    # Duration of each event (in hours)
+TOKEN = os.getenv("KALTURA_TOKEN")
+
+NUMBER_OF_EVENTS = int(os.getenv("NUMBER_OF_EVENTS", 2))  # How many events to create
+DURATION_HOURS = int(os.getenv("DURATION_HOURS", 4))    # Duration of each event (in hours)
 
 
 START_DATE = datetime.datetime.now(datetime.timezone.utc)
+
 
 BASE_EVENT = {
     "templateId": "tm3000",   # hard coded - depending on the event Type, each one creating a different event type 

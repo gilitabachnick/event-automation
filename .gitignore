@@ -1,0 +1,17 @@
+# Python cache
+__pycache__/
+*.pyc
+
+# VSCode / PyCharm
+.vscode/
+.idea/
+
+# 
+*.json
+*.env
+token.txt
+secrets.txt
+
+# 
+.DS_Store
+Thumbs.db
